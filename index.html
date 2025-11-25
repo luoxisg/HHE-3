@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HHE Strategic Platform - Comprehensive Green Storage Strategy</title>
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'Noto Sans SC', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#0b1121',
+                        card: '#151e32',
+                        primary: '#3b82f6',
+                        accent: '#10b981',
+                        cyan: '#06b6d4',
+                        orange: '#f59e0b',
+                        purple: '#8b5cf6',
+                        danger: '#f43f5e'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0b1121; color: #f1f5f9; scroll-behavior: smooth; overflow-x: hidden; font-size: 16px; }
+        
+        /* Custom Utilities */
+        .glass-panel { background: rgba(21, 30, 50, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); border-color: #3b82f6; box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3); }
+        
+        /* Animation */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        
+        .hero-glow {
+            position: absolute; width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(0,0,0,0) 70%);
+            top: 50%; right: -20%; transform: translateY(-50%); pointer-events: none;
+        }
+
+        /* Detailed Table Styles */
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .data-table th { @apply text-xs uppercase tracking-wider text-gray-400 font-medium py-3 px-4 text-left border-b border-white/10 bg-white/5; }
+        .data-table td { @apply py-3 px-4 border-b border-white/5 text-gray-300; }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover { @apply bg-white/5; }
+
+        /* Section Divider */
+        .section-divider { border-top: 1px solid rgba(255,255,255,0.05); }
+        
+        header.scrolled { background: rgba(11, 17, 33, 0.98); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-white/5" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20">D</div>
+            <div class="leading-tight">
+                <div class="font-bold text-lg tracking-wide">DCDeepTech</div>
+                <div class="text-[10px] text-gray-400 uppercase tracking-wider">Strategic Proposal</div>
+            </div>
+        </div>
+        
+        <nav class="hidden lg:flex gap-6 text-xs font-medium text-gray-400 uppercase tracking-wide">
+            <a href="#market-landscape" class="hover:text-white transition-colors" data-en="Market Landscape" data-cn="市场全景">Market Landscape</a>
+            <a href="#tech-deep-dive" class="hover:text-white transition-colors" data-en="Tech Engineering" data-cn="工程技术">Tech Engineering</a>
+            <a href="#financial-model" class="hover:text-white transition-colors" data-en="Financial Model" data-cn="财务模型">Financial Model</a>
+            <a href="#risk-framework" class="hover:text-white transition-colors" data-en="Risk Framework" data-cn="风险框架">Risk Framework</a>
+            <a href="#execution" class="hover:text-white transition-colors" data-en="Execution" data-cn="执行计划">Execution</a>
+        </nav>
+
+        <button onclick="toggleLang()" class="px-4 py-2 rounded-full border border-white/10 hover:bg-white/5 text-xs font-mono transition-colors flex items-center gap-2">
+            <i class="fa-solid fa-globe"></i> <span id="lang-label">EN / 中文</span>
+        </button>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative pt-40 pb-24 overflow-hidden">
+    <div class="hero-glow"></div>
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+        <div class="fade-up">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-500/20">
+                <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                <span data-en="Strategic Investment Proposal" data-cn="战略投资提案">Strategic Investment Proposal</span>
+            </div>
+            
+            <h1 class="text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+                <span class="text-white">HHE:</span> <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600" data-en="Inertia Physics" data-cn="数字经济的">Inertia Physics</span><br>
+                <span class="text-gray-400 text-3xl lg:text-5xl" data-en="for the Digital Economy" data-cn="惯性物理学引擎">for the Digital Economy</span>
+            </h1>
+            
+            <p class="text-lg text-gray-400 mb-10 max-w-lg leading-relaxed text-justify" data-en="Addressing the critical energy trilemma in Tropical AI Clusters: Stability, Sustainability, and Space. A definitive roadmap to deploy Mag-lev Flywheel Energy Storage into Singapore's critical infrastructure." data-cn="解决热带 AI 算力集群面临的能源三难困境：稳定性、可持续性与空间效率。一份将磁悬浮飞轮储能技术植入新加坡关键基础设施的明确路线图。">
+                Addressing the critical energy trilemma in Tropical AI Clusters: Stability, Sustainability, and Space. A definitive roadmap to deploy Mag-lev Flywheel Energy Storage into Singapore's critical infrastructure.
+            </p>
+
+            <div class="grid grid-cols-3 gap-4 mb-10">
+                <div class="p-4 rounded-xl bg-card border border-white/5">
+                    <div class="text-2xl font-bold text-white">193<span class="text-sm text-gray-500 ml-1">M</span></div>
+                    <div class="text-[10px] text-gray-400 uppercase mt-1" data-en="2030 SOM (SGD)" data-cn="2030 目标市场 (SGD)">2030 SOM (SGD)</div>
+                </div>
+                <div class="p-4 rounded-xl bg-card border border-blue-500/30">
+                    <div class="text-2xl font-bold text-blue-400">28<span class="text-sm text-gray-500 ml-1">M</span></div>
+                    <div class="text-[10px] text-blue-400 uppercase mt-1" data-en="Year 3 Revenue" data-cn="第三年营收预测">Year 3 Revenue</div>
+                </div>
+                <div class="p-4 rounded-xl bg-card border border-green-500/30">
+                    <div class="text-2xl font-bold text-accent">35<span class="text-sm text-gray-500 ml-1">%</span></div>
+                    <div class="text-[10px] text-accent uppercase mt-1" data-en="Gross Margin" data-cn="目标毛利率">Gross Margin</div>
+                </div>
+            </div>
+
+            <div class="flex gap-4">
+                <button onclick="document.getElementById('market-landscape').scrollIntoView()" class="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold shadow-lg shadow-blue-600/20 transition-all flex items-center gap-2">
+                    <span data-en="Deep Analysis" data-cn="深度分析">Deep Analysis</span> <i class="fa-solid fa-arrow-down"></i>
+                </button>
+                <button onclick="document.getElementById('financial-model').scrollIntoView()" class="px-8 py-4 rounded-xl border border-white/10 hover:bg-white/5 text-white font-bold transition-all">
+                    <span data-en="Investment Case" data-cn="投资逻辑">Investment Case</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="relative h-[600px] w-full fade-up flex justify-center items-center">
+            <canvas id="flywheelCanvas" class="w-full h-full object-contain"></canvas>
+        </div>
+    </div>
+</section>
+
+<!-- 1. MARKET LANDSCAPE: Macro & Micro Analysis -->
+<section id="market-landscape" class="py-24 bg-card/30 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+            <span class="text-accent font-bold tracking-wider uppercase text-xs" data-en="Part 1: Market Dynamics" data-cn="第一部分：市场动态">Part 1: Market Dynamics</span>
+            <h2 class="text-3xl font-bold mt-2 text-white" data-en="The Singapore Paradox: Growth vs. Constraints" data-cn="新加坡悖论：增长与约束的博弈">The Singapore Paradox: Growth vs. Constraints</h2>
+            <p class="text-gray-400 mt-4 max-w-3xl" data-en="Singapore's ambition to remain a digital hub conflicts with its physical limitations. This conflict creates three distinct, high-value opportunities for HHE." data-cn="新加坡保持数字枢纽地位的雄心与其物理局限性产生冲突。这种冲突为 HHE 创造了三个独特的高价值切入点。">
+                Singapore's ambition to remain a digital hub conflicts with its physical limitations. This conflict creates three distinct, high-value opportunities for HHE.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 fade-up">
+            <!-- Opportunity 1: Brownfield -->
+            <div class="bg-card border-t-4 border-orange-500 p-8 rounded-2xl hover:bg-white/5 transition-all group">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="p-3 bg-orange-500/10 rounded-lg text-orange-500 text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-rotate"></i></div>
+                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider" data-en="Legacy Retrofit" data-cn="存量改造">Legacy Retrofit</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2" data-en="The Space & Safety Crisis" data-cn="空间与安全危机">The Space & Safety Crisis</h3>
+                <div class="text-3xl font-bold text-orange-400 mb-3">~600 <span class="text-sm text-gray-400">MW</span></div>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-en="Older DCs (10+ years) face stricter SCDF fire codes. Li-ion requires expensive fire suppression upgrades. HHE is physically inert." data-cn="老旧数据中心（10年以上）面临更严格的民防部队 (SCDF) 消防规范。锂电池升级需要昂贵的消防改造。HHE 物理惰性，无火灾风险。">
+                    Older DCs (10+ years) face stricter SCDF fire codes. Li-ion requires expensive fire suppression upgrades. HHE is physically inert.
+                </p>
+                <ul class="space-y-2 text-xs text-gray-300 border-t border-white/5 pt-4">
+                    <li class="flex justify-between"><span data-en="Floor Loading:" data-cn="承重需求:">Floor Loading:</span> <span class="text-orange-400" data-en="High Density" data-cn="高密度">High Density</span></li>
+                    <li class="flex justify-between"><span data-en="Fire Risk:" data-cn="火灾风险:">Fire Risk:</span> <span class="text-green-400" data-en="Zero" data-cn="零">Zero</span></li>
+                    <li class="flex justify-between"><span data-en="AC Savings:" data-cn="空调节省:">AC Savings:</span> <span class="text-blue-400">~30%</span></li>
+                </ul>
+            </div>
+
+            <!-- Opportunity 2: Greenfield -->
+            <div class="bg-card border-t-4 border-blue-500 p-8 rounded-2xl hover:bg-white/5 transition-all group">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="p-3 bg-blue-500/10 rounded-lg text-blue-500 text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-seedling"></i></div>
+                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider" data-en="New Allocation" data-cn="增量配额">New Allocation</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2" data-en="The PUE < 1.3 Mandate" data-cn="PUE < 1.3 强制令">The PUE < 1.3 Mandate</h3>
+                <div class="text-3xl font-bold text-blue-400 mb-3">+1.3 <span class="text-sm text-gray-400">GW</span></div>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-en="New IMDA allocations require Platinum Green Mark. Operating temps must rise to 26°C+. Chemical batteries degrade rapidly; Flywheels thrive." data-cn="IMDA 新配额要求达到绿色标志白金级。运行温度需提升至 26°C 以上。化学电池在此温度下迅速衰减；飞轮则不受影响。">
+                    New IMDA allocations require Platinum Green Mark. Operating temps must rise to 26°C+. Chemical batteries degrade rapidly; Flywheels thrive.
+                </p>
+                <ul class="space-y-2 text-xs text-gray-300 border-t border-white/5 pt-4">
+                    <li class="flex justify-between"><span data-en="PUE Impact:" data-cn="PUE 影响:">PUE Impact:</span> <span class="text-blue-400">-0.05</span></li>
+                    <li class="flex justify-between"><span data-en="Temp Tolerance:" data-cn="耐温性:">Temp Tolerance:</span> <span class="text-green-400" data-en="Up to 40°C" data-cn="高达 40°C">Up to 40°C</span></li>
+                    <li class="flex justify-between"><span data-en="Footprint:" data-cn="占地面积:">Footprint:</span> <span class="text-green-400" data-en="1/4 vs Li-ion" data-cn="锂电的 1/4">1/4 vs Li-ion</span></li>
+                </ul>
+            </div>
+
+            <!-- Opportunity 3: Industrial -->
+            <div class="bg-card border-t-4 border-cyan-500 p-8 rounded-2xl hover:bg-white/5 transition-all group">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="p-3 bg-cyan-500/10 rounded-lg text-cyan-500 text-2xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-microchip"></i></div>
+                    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider" data-en="High-Tech Mfg" data-cn="高端制造">High-Tech Mfg</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2" data-en="Power Quality (SEMI F47)" data-cn="电能质量 (SEMI F47)">Power Quality (SEMI F47)</h3>
+                <div class="text-3xl font-bold text-cyan-400 mb-3">60+ <span class="text-sm text-gray-400" data-en="Fabs" data-cn="晶圆厂">Fabs</span></div>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed" data-en="Voltage sags cause millions in scrap for wafer fabs. HHE provides millisecond response for ride-through, far superior to static UPS." data-cn="电压暂降会导致晶圆厂数百万美元的废料损失。HHE 提供毫秒级响应的穿越能力，远优于静态 UPS。">
+                    Voltage sags cause millions in scrap for wafer fabs. HHE provides millisecond response for ride-through, far superior to static UPS.
+                </p>
+                <ul class="space-y-2 text-xs text-gray-300 border-t border-white/5 pt-4">
+                    <li class="flex justify-between"><span data-en="Response:" data-cn="响应速度:">Response:</span> <span class="text-cyan-400">< 5ms</span></li>
+                    <li class="flex justify-between"><span data-en="Cycle Life:" data-cn="循环寿命:">Cycle Life:</span> <span class="text-green-400">> 1M Cycles</span></li>
+                    <li class="flex justify-between"><span data-en="Cost of Downtime:" data-cn="停机成本:">Cost of Downtime:</span> <span class="text-red-400" data-en="Extremely High" data-cn="极高">Extremely High</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Market Drivers Quantitative Analysis -->
+        <div class="mt-16 grid md:grid-cols-2 gap-12 items-center fade-up">
+            <div>
+                <h4 class="text-xl font-bold text-white mb-6" data-en="Economic Drivers: The Cost of Carbon & Land" data-cn="经济驱动力：碳价与地价">Economic Drivers: The Cost of Carbon & Land</h4>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 text-right font-bold text-green-400">SGD 80</div>
+                        <div class="flex-1">
+                            <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-green-500 w-full"></div>
+                            </div>
+                            <div class="text-xs text-gray-400 mt-1" data-en="Carbon Tax / tCO2e (2030 Target)" data-cn="碳税 / tCO2e (2030 目标)">Carbon Tax / tCO2e (2030 Target)</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 text-right font-bold text-blue-400">$4,000</div>
+                        <div class="flex-1">
+                            <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 w-3/4"></div>
+                            </div>
+                            <div class="text-xs text-gray-400 mt-1" data-en="Data Centre Construction Cost (USD/kW)" data-cn="数据中心造价 (USD/kW)">Data Centre Construction Cost (USD/kW)</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 italic border-l-2 border-white/10 pl-4" data-en="&quot;In a market with $80 carbon tax and premium land costs, energy density and efficiency are not just technical metrics—they are financial survival metrics.&quot;" data-cn="“在碳税高达 80 新币且土地成本高昂的市场中，能量密度和能效不仅仅是技术指标，更是财务生存指标。”">
+                        "In a market with $80 carbon tax and premium land costs, energy density and efficiency are not just technical metrics—they are financial survival metrics."
+                    </p>
+                </div>
+            </div>
+            <div class="bg-dark/50 p-6 rounded-xl border border-white/5">
+                <canvas id="marketChart" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. TECH ENGINEERING: Deep Dive -->
+<section id="tech-deep-dive" class="py-24 bg-dark">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+            <span class="text-blue-500 font-bold tracking-wider uppercase text-xs" data-en="Part 2: Engineering Superiority" data-cn="第二部分：工程优势">Part 2: Engineering Superiority</span>
+            <h2 class="text-3xl font-bold mt-2 text-white" data-en="The Physics of Reliability" data-cn="可靠性物理学">The Physics of Reliability</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-16 fade-up">
+            <!-- Left: Core Technologies -->
+            <div class="space-y-8">
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-blue-900/30 flex items-center justify-center text-blue-400 font-bold text-xl border border-blue-500/30">1</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-2" data-en="5-Axis Active Magnetic Bearing (AMB)" data-cn="五自由度主动磁悬浮轴承 (AMB)">5-Axis Active Magnetic Bearing (AMB)</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed" data-en="Unlike mechanical bearings, AMB creates a zero-friction environment. The rotor is suspended in a magnetic field, controlled by high-speed DSPs (20kHz sampling)." data-cn="与机械轴承不同，AMB 创造了零摩擦环境。转子悬浮在磁场中，由高速 DSP（20kHz 采样率）控制。">
+                            Unlike mechanical bearings, AMB creates a zero-friction environment. The rotor is suspended in a magnetic field, controlled by high-speed DSPs (20kHz sampling).
+                        </p>
+                        <span class="text-accent text-xs mt-2 block" data-en="Benefit: Theoretically infinite bearing life; No lubrication maintenance." data-cn="优势：理论上无限的轴承寿命；无润滑维护。">Benefit: Theoretically infinite bearing life; No lubrication maintenance.</span>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-purple-900/30 flex items-center justify-center text-purple-400 font-bold text-xl border border-purple-500/30">2</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-2" data-en="High-Strength Alloy Steel Rotor" data-cn="高强度合金钢转子">High-Strength Alloy Steel Rotor</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed" data-en="Chosen over Carbon Fiber for cost-efficiency and safety. While energy density is lower, Power Density (crucial for UPS) is optimized." data-cn="为成本效益和安全性而选择，优于碳纤维。虽然能量密度较低，但针对 UPS 关键的功率密度进行了优化。">
+                            Chosen over Carbon Fiber for cost-efficiency and safety. While energy density is lower, <strong>Power Density</strong> (crucial for UPS) is optimized.
+                        </p>
+                        <span class="text-accent text-xs mt-2 block" data-en="Benefit: Robust thermal handling; Lower manufacturing cost vs. Composite." data-cn="优势：强大的热处理能力；制造成本低于复合材料。">Benefit: Robust thermal handling; Lower manufacturing cost vs. Composite.</span>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-cyan-900/30 flex items-center justify-center text-cyan-400 font-bold text-xl border border-cyan-500/30">3</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white mb-2" data-en="Vacuum Hermetic Chamber" data-cn="真空密封腔体">Vacuum Hermetic Chamber</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed" data-en="Operates at high vacuum (< 1Pa) to eliminate windage loss. The sealed environment makes it immune to Singapore's 90%+ humidity." data-cn="在高真空 (< 1Pa) 下运行以消除风阻损耗。密封环境使其对新加坡 90% 以上的湿度免疫。">
+                            Operates at high vacuum (< 1Pa) to eliminate windage loss. The sealed environment makes it immune to Singapore's 90%+ humidity.
+                        </p>
+                        <span class="text-accent text-xs mt-2 block" data-en="Benefit: Standby loss < 2kW; Immune to &quot;Tropical Rot&quot; (corrosion)." data-cn="优势：待机损耗 < 2kW；免疫“热带腐蚀”。">Benefit: Standby loss < 2kW; Immune to "Tropical Rot" (corrosion).</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Comparative Analysis Table -->
+            <div class="bg-card rounded-2xl border border-white/10 overflow-hidden">
+                <div class="p-4 bg-white/5 border-b border-white/10 font-bold text-white text-center" data-en="Physics Comparison: Flywheel vs. Li-ion" data-cn="物理特性对比：飞轮 vs 锂电池">
+                    Physics Comparison: Flywheel vs. Li-ion
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th data-en="Parameter" data-cn="参数">Parameter</th>
+                            <th data-en="HHE Flywheel" data-cn="HHE 飞轮">HHE Flywheel</th>
+                            <th data-en="Li-ion (LFP)" data-cn="锂电池 (LFP)">Li-ion (LFP)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-white" data-en="Energy Mechanism" data-cn="储能机制">Energy Mechanism</td>
+                            <td class="text-blue-400 font-bold" data-en="Kinetic (Physical)" data-cn="动能 (物理)">Kinetic (Physical)</td>
+                            <td class="text-gray-500" data-en="Electrochemical" data-cn="电化学">Electrochemical</td>
+                        </tr>
+                        <tr>
+                            <td class="text-white" data-en="Temp Sensitivity" data-cn="温度敏感性">Temp Sensitivity</td>
+                            <td class="text-green-400 font-bold" data-en="Insensitive (-20~40°C)" data-cn="不敏感 (-20~40°C)">Insensitive (-20~40°C)</td>
+                            <td class="text-red-400" data-en="High (Arrhenius Eq)" data-cn="高 (阿伦尼乌斯方程)">High (Arrhenius Eq)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-white" data-en="Cycle Life" data-cn="循环寿命">Cycle Life</td>
+                            <td class="text-green-400 font-bold">> 1,000,000</td>
+                            <td class="text-red-400">~ 5,000</td>
+                        </tr>
+                        <tr>
+                            <td class="text-white" data-en="Power Density" data-cn="功率密度">Power Density</td>
+                            <td class="text-green-400 font-bold" data-en="High (kW/kg)" data-cn="高 (kW/kg)">High (kW/kg)</td>
+                            <td class="text-gray-500" data-en="Medium" data-cn="中等">Medium</td>
+                        </tr>
+                        <tr>
+                            <td class="text-white" data-en="Safety Risk" data-cn="安全风险">Safety Risk</td>
+                            <td class="text-green-400 font-bold" data-en="Containment Only" data-cn="仅需物理防护">Containment Only</td>
+                            <td class="text-red-400" data-en="Thermal Runaway" data-cn="热失控">Thermal Runaway</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="p-4 text-xs text-gray-400 bg-white/5 italic text-center" data-en="&quot;In short duration, high power applications (UPS), Physics beats Chemistry.&quot;" data-cn="“在短时高功率应用（UPS）中，物理学战胜了化学。”">
+                    "In short duration, high power applications (UPS), Physics beats Chemistry."
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. FINANCIAL MODEL: Investment Grade -->
+<section id="financial-model" class="py-24 bg-card/30 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+            <span class="text-green-500 font-bold tracking-wider uppercase text-xs" data-en="Part 3: Value Creation" data-cn="第三部分：价值创造">Part 3: Value Creation</span>
+            <h2 class="text-3xl font-bold mt-2 text-white" data-en="Financial Roadmap & Unit Economics" data-cn="财务路线图与单机模型">Financial Roadmap & Unit Economics</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-12 fade-up">
+            
+            <!-- Left Column: Unit Economics & Funding -->
+            <div class="lg:col-span-5 space-y-8">
+                <!-- Unit Economics Card -->
+                <div class="bg-white/5 rounded-2xl border border-white/10 p-6">
+                    <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2" data-en="Unit Economics (500kW System)" data-cn="单机模型 (500kW 系统)">Unit Economics (500kW System)</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400" data-en="Average Selling Price (ASP)" data-cn="平均售价 (ASP)">Average Selling Price (ASP)</span>
+                            <span class="text-white font-mono">SGD 400,000</span>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 pl-4">
+                            <span data-en="* Includes installation & commissioning" data-cn="* 含安装与调试">* Includes installation & commissioning</span>
+                        </div>
+                        
+                        <div class="flex justify-between pt-2">
+                            <span class="text-gray-400" data-en="COGS (Manufacturing - JS-SEZ)" data-cn="销货成本 (新柔特区制造)">COGS (Manufacturing - JS-SEZ)</span>
+                            <span class="text-red-400 font-mono">(SGD 250,000)</span>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 pl-4">
+                            <span data-en="* Leveraging Johor low-cost labor/land" data-cn="* 利用柔佛低成本人力/土地">* Leveraging Johor low-cost labor/land</span>
+                        </div>
+
+                        <div class="flex justify-between pt-2">
+                            <span class="text-gray-400" data-en="Logistics & Landing" data-cn="物流与落地">Logistics & Landing</span>
+                            <span class="text-red-400 font-mono">(SGD 10,000)</span>
+                        </div>
+
+                        <div class="border-t border-white/10 my-2 pt-2 flex justify-between items-center">
+                            <span class="text-green-400 font-bold" data-en="Gross Profit" data-cn="毛利润">Gross Profit</span>
+                            <span class="text-green-400 font-bold font-mono text-lg">SGD 140,000</span>
+                        </div>
+                        <div class="text-right text-xs text-green-500 font-bold" data-en="Margin: 35.0%" data-cn="毛利率: 35.0%">Margin: 35.0%</div>
+                    </div>
+                </div>
+
+                <!-- Funding Ask -->
+                <div class="bg-gradient-to-br from-blue-900/40 to-purple-900/40 p-6 rounded-2xl border border-blue-500/30">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-white" data-en="Seed Round Ask" data-cn="种子轮融资需求">Seed Round Ask</h3>
+                        <span class="px-3 py-1 bg-blue-500 text-white font-bold rounded text-sm">SGD 2.0 M</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-xs text-gray-300 mb-4">
+                        <div class="bg-black/20 p-2 rounded">
+                            <span class="block text-gray-500" data-en="Runway" data-cn="资金跑道">Runway</span>
+                            <span class="font-bold text-white" data-en="18 Months" data-cn="18 个月">18 Months</span>
+                        </div>
+                        <div class="bg-black/20 p-2 rounded">
+                            <span class="block text-gray-500" data-en="Target" data-cn="目标">Target</span>
+                            <span class="font-bold text-white" data-en="Mkt Entry + Certs" data-cn="市场准入 + 认证">Mkt Entry + Certs</span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-gray-400 text-justify leading-snug" data-en="Funds allocated to: Inventory Buffer (50%) for rapid pilot deployment, Local Engineering Team (30%) for PE endorsement, and Regulatory Certification (20%)." data-cn="资金分配：库存缓冲 (50%) 用于快速试点部署，本地工程团队 (30%) 用于 PE 签章，监管认证 (20%)。">
+                        Funds allocated to: <strong>Inventory Buffer (50%)</strong> for rapid pilot deployment, <strong>Local Engineering Team (30%)</strong> for PE endorsement, and <strong>Regulatory Certification (20%)</strong>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Projections & Sensitivity -->
+            <div class="lg:col-span-7 space-y-8">
+                
+                <!-- Revenue Chart -->
+                <div class="bg-card p-6 rounded-2xl border border-white/10">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-white" data-en="Revenue Projections (3-Year)" data-cn="三年收入预测">Revenue Projections (3-Year)</h3>
+                        <div class="flex gap-4 text-xs">
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> <span data-en="CapEx" data-cn="硬件销售">CapEx</span></span>
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-green-500 rounded-full"></span> <span data-en="OpEx" data-cn="运维服务">OpEx</span></span>
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-orange-500 rounded-full"></span> <span data-en="EaaS" data-cn="能源租赁">EaaS</span></span>
+                        </div>
+                    </div>
+                    <div class="h-64 w-full">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-white/5 text-center">
+                        <div>
+                            <span class="text-xs text-gray-500 block" data-en="2026 Rev" data-cn="2026 营收">2026 Rev</span>
+                            <span class="text-white font-bold">2.5 M</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-500 block" data-en="2027 Rev" data-cn="2027 营收">2027 Rev</span>
+                            <span class="text-white font-bold">12.0 M</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-500 block" data-en="2028 Rev" data-cn="2028 营收">2028 Rev</span>
+                            <span class="text-white font-bold">28.0 M</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sensitivity Matrix (New) -->
+                <div class="bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase mb-3" data-en="Sensitivity Analysis: Gross Margin Drivers" data-cn="敏感性分析：毛利率驱动因素">Sensitivity Analysis: Gross Margin Drivers</h4>
+                    <table class="w-full text-xs text-center">
+                        <thead>
+                            <tr class="text-gray-500">
+                                <th class="text-left pb-2" data-en="Scenario" data-cn="情景">Scenario</th>
+                                <th class="pb-2" data-en="JS-SEZ Impact" data-cn="新柔特区影响">JS-SEZ Impact</th>
+                                <th class="pb-2" data-en="Volume Discount" data-cn="规模折扣">Volume Discount</th>
+                                <th class="pb-2 text-right" data-en="Net Margin" data-cn="净利率">Net Margin</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-300">
+                            <tr class="border-b border-white/5">
+                                <td class="text-left py-2 text-red-400" data-en="Base Case (China Mfg)" data-cn="基础 (中国制造)">Base Case (China Mfg)</td>
+                                <td>0%</td>
+                                <td>0%</td>
+                                <td class="text-right">25.0%</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-left py-2 text-blue-400" data-en="Strategic (Johor Mfg)" data-cn="战略 (柔佛制造)">Strategic (Johor Mfg)</td>
+                                <td>+5.0%</td>
+                                <td>+2.0%</td>
+                                <td class="text-right font-bold">32.0%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left py-2 text-green-400" data-en="Optimized (Scale)" data-cn="优化 (规模效应)">Optimized (Scale)</td>
+                                <td>+6.0%</td>
+                                <td>+4.0%</td>
+                                <td class="text-right font-bold text-accent">35.0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. COMPETITION & STRATEGY -->
+<section id="competition" class="py-24 bg-dark border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-12 fade-up">
+            <span class="text-orange-500 font-bold tracking-wider uppercase text-xs" data-en="Part 4: Competitive Moat" data-cn="第四部分：竞争护城河">Part 4: Competitive Moat</span>
+            <h2 class="text-3xl font-bold mt-2 text-white" data-en="Asymmetric Warfare Strategy" data-cn="不对称竞争战略">Asymmetric Warfare Strategy</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 fade-up">
+            
+            <!-- Radar Chart & Analysis -->
+            <div class="bg-card p-8 rounded-2xl border border-white/10">
+                <h3 class="text-lg font-bold text-white mb-6 text-center" data-en="Competitive Landscape Radar" data-cn="竞争格局雷达图">Competitive Landscape Radar</h3>
+                <div class="relative h-[350px]">
+                    <canvas id="radarChart"></canvas>
+                </div>
+                <div class="mt-6 text-sm text-gray-400 text-justify" data-en="Analysis: While US/German competitors (Active Power, Piller) dominate brand awareness, they suffer from high initial costs and slower service response in ASEAN. HHE leverages the &quot;China Tech + Singapore QC&quot; hybrid model to offer superior TCO and service agility." data-cn="分析：虽然美德竞争对手（Active Power, Piller）在品牌知名度上占优，但其在东盟地区的初始成本高且服务响应慢。HHE 利用“中国技术 + 新加坡品控”的混合模式，提供卓越的 TCO 和服务敏捷性。">
+                    <strong>Analysis:</strong> While US/German competitors (Active Power, Piller) dominate brand awareness, they suffer from high initial costs and slower service response in ASEAN. HHE leverages the <strong>"China Tech + Singapore QC"</strong> hybrid model to offer superior TCO and service agility.
+                </div>
+            </div>
+
+            <!-- Comparison Matrix -->
+            <div class="space-y-6">
+                <div class="bg-white/5 rounded-xl p-6 border-l-4 border-blue-500">
+                    <h4 class="text-blue-400 font-bold mb-2" data-en="vs. Chemical Batteries (Li-ion)" data-cn="对比化学电池 (锂电)">vs. Chemical Batteries (Li-ion)</h4>
+                    <p class="text-sm text-gray-300 mb-3" data-en="The incumbent but flawed solution for high-power UPS." data-cn="现有的高功率 UPS 解决方案，但存在缺陷。">The incumbent but flawed solution for high-power UPS.</p>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong data-en="Space:" data-cn="空间:">Space:</strong> <span data-en="HHE saves 75% footprint (High value in Jurong)." data-cn="HHE 节省 75% 占地（裕廊岛高价值）。">HHE saves 75% footprint (High value in Jurong).</span></li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong data-en="Cooling:" data-cn="冷却:">Cooling:</strong> <span data-en="HHE needs no AC; Li-ion consumes 3-5% total power." data-cn="HHE 无需空调；锂电消耗 3-5% 总功率。">HHE needs no AC; Li-ion consumes 3-5% total power.</span></li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong data-en="Life:" data-cn="寿命:">Life:</strong> <span data-en="HHE 20 years vs Li-ion 5-7 years (replacement cost)." data-cn="HHE 20年 vs 锂电 5-7年（更换成本）。">HHE 20 years vs Li-ion 5-7 years (replacement cost).</span></li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/5 rounded-xl p-6 border-l-4 border-orange-500">
+                    <h4 class="text-orange-400 font-bold mb-2" data-en="vs. Global Flywheels (Active Power)" data-cn="对比国际飞轮 (Active Power)">vs. Global Flywheels (Active Power)</h4>
+                    <p class="text-sm text-gray-300 mb-3" data-en="The premium incumbents." data-cn="高端市场在位者。">The premium incumbents.</p>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong data-en="Cost:" data-cn="成本:">Cost:</strong> <span data-en="HHE is ~40% cheaper due to supply chain." data-cn="得益于供应链，HHE 便宜约 40%。">HHE is ~40% cheaper due to supply chain.</span></li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong data-en="Tech:" data-cn="技术:">Tech:</strong> <span data-en="HHE (Maglev) vs AP (Mech/Hybrid bearings). Lower maintenance." data-cn="HHE (磁悬浮) vs AP (机械/混合轴承)。维护更低。">HHE (Maglev) vs AP (Mech/Hybrid bearings). Lower maintenance.</span></li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong data-en="Support:" data-cn="支持:">Support:</strong> <span data-en="Direct local team vs Distributor model." data-cn="直接本地团队 vs 分销商模式。">Direct local team vs Distributor model.</span></li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/5 rounded-xl p-6 border-l-4 border-purple-500">
+                    <h4 class="text-purple-400 font-bold mb-2" data-en="Supply Chain Resilience (JS-SEZ)" data-cn="供应链韧性 (新柔特区)">Supply Chain Resilience (JS-SEZ)</h4>
+                    <p class="text-sm text-gray-300" data-en="Utilizing the Johor-Singapore Special Economic Zone allows HHE to manufacture heavy components (rotors/enclosures) in Malaysia (low cost) while finishing integration in Singapore (high trust)." data-cn="利用新柔经济特区，HHE 可以在马来西亚制造重型组件（转子/外壳，低成本），而在新加坡完成集成（高信任）。">
+                        Utilizing the <strong>Johor-Singapore Special Economic Zone</strong> allows HHE to manufacture heavy components (rotors/enclosures) in Malaysia (low cost) while finishing integration in Singapore (high trust).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. RISK & ANNEX -->
+<section id="risk-framework" class="py-24 bg-card/30">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-white" data-en="Risk Management Framework" data-cn="风险管控框架">Risk Management Framework</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6 fade-up mb-16">
+            <div class="p-6 rounded-xl bg-dark border border-red-500/30 relative overflow-hidden">
+                <div class="absolute right-0 top-0 p-2 opacity-20 text-5xl text-red-500"><i class="fa-solid fa-gavel"></i></div>
+                <h4 class="text-red-400 font-bold mb-2" data-en="Decision Risk" data-cn="决策风险">Decision Risk</h4>
+                <p class="text-xs text-gray-400 mb-4" data-en="Client hesitation due to &quot;Brand Newness&quot;." data-cn="客户因“品牌新颖度”而产生的犹豫。">Client hesitation due to "Brand Newness".</p>
+                <div class="text-xs text-white bg-red-500/10 p-2 rounded border border-red-500/20">
+                    <strong data-en="Mitigation:" data-cn="应对：">Mitigation:</strong> <span data-en="The &quot;Trojan Horse&quot; strategy. Enter via STDCT 2.0 pilot (Government endorsed) before commercial sales." data-cn="“特洛伊木马”策略。在商业销售前，通过政府背书的 STDCT 2.0 试点进入。">The "Trojan Horse" strategy. Enter via STDCT 2.0 pilot (Government endorsed) before commercial sales.</span>
+                </div>
+            </div>
+            
+            <div class="p-6 rounded-xl bg-dark border border-orange-500/30 relative overflow-hidden">
+                <div class="absolute right-0 top-0 p-2 opacity-20 text-5xl text-orange-500"><i class="fa-solid fa-cloud-rain"></i></div>
+                <h4 class="text-orange-400 font-bold mb-2" data-en="Technical Risk" data-cn="技术风险">Technical Risk</h4>
+                <p class="text-xs text-gray-400 mb-4" data-en="Tropical humidity corrosion." data-cn="热带湿度腐蚀。">Tropical humidity corrosion.</p>
+                <div class="text-xs text-white bg-orange-500/10 p-2 rounded border border-orange-500/20">
+                    <strong data-en="Mitigation:" data-cn="应对：">Mitigation:</strong> <span data-en="Hermetic sealing + Conformal coating. Accelerated aging test in STDCT." data-cn="密封 + 三防涂层。STDCT 加速老化测试。">Hermetic sealing + Conformal coating. Accelerated aging test in STDCT.</span>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-xl bg-dark border border-green-500/30 relative overflow-hidden">
+                <div class="absolute right-0 top-0 p-2 opacity-20 text-5xl text-green-500"><i class="fa-solid fa-file-contract"></i></div>
+                <h4 class="text-green-400 font-bold mb-2" data-en="Compliance Risk" data-cn="合规风险">Compliance Risk</h4>
+                <p class="text-xs text-gray-400 mb-4" data-en="SEMI F47 / PE Certification failure." data-cn="SEMI F47 / PE 认证失败。">SEMI F47 / PE Certification failure.</p>
+                <div class="text-xs text-white bg-green-500/10 p-2 rounded border border-green-500/20">
+                    <strong data-en="Mitigation:" data-cn="应对：">Mitigation:</strong> <span data-en="Pre-allocated budget (SGD 20k). Leveraging China-Singapore Mutual Recognition Agreement (MRA)." data-cn="预留预算 (SGD 20k)。利用中新认证互认协议 (MRA)。">Pre-allocated budget (SGD 20k). Leveraging China-Singapore Mutual Recognition Agreement (MRA).</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Annex: Case Study -->
+        <div class="border-t border-white/10 pt-12 fade-up">
+            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2" data-en="Annex: The GlobalFoundries Paradox" data-cn="附件：格芯悖论 (GlobalFoundries Paradox)">
+                <i class="fa-solid fa-book-open text-gray-500"></i> Annex: The GlobalFoundries Paradox
+            </h3>
+            <div class="bg-white/5 p-8 rounded-2xl border border-white/10 grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-white font-bold mb-2" data-en="The Context" data-cn="背景">The Context</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-4" data-en="HHE successfully delivered a 16MW Dynamic UPS system to a top-tier wafer fab in Chengdu. This proves engineering capability at a massive scale. However, the project halted in 2019 due to external factors." data-cn="HHE 成功向成都一家顶级晶圆厂交付了 16MW 动态 UPS 系统。这证明了大规模工程能力。然而，该项目因外部因素于 2019 年暂停。">
+                        HHE successfully delivered a 16MW Dynamic UPS system to a top-tier wafer fab in Chengdu. This proves engineering capability at a massive scale. However, the project halted in 2019 due to external factors.
+                    </p>
+                    <h4 class="text-white font-bold mb-2" data-en="The Strategic Spin" data-cn="战略解读">The Strategic Spin</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed" data-en="We position this not as a &quot;failed project&quot; but as a Proven Deployment Capability. We fill the data gap (long-term reliability) using data from our CNPC (PetroChina) drilling rig projects, which operate in even harsher environments." data-cn="我们不将其定位为“失败项目”，而是作为已验证的部署能力。我们利用在中石油 (CNPC) 钻机项目中（环境更恶劣）的数据来填补数据空白（长期可靠性）。">
+                        We position this not as a "failed project" but as a <strong>"Proven Deployment Capability"</strong>. We fill the data gap (long-term reliability) using data from our CNPC (PetroChina) drilling rig projects, which operate in even harsher environments.
+                    </p>
+                </div>
+                <div class="flex items-center justify-center bg-black/20 rounded-xl p-4">
+                    <!-- Simple diagram logic visualization -->
+                    <div class="text-center">
+                        <div class="text-xs text-gray-500 uppercase tracking-widest mb-2" data-en="Evidence Chain" data-cn="证据链">Evidence Chain</div>
+                        <div class="flex items-center gap-2 text-sm font-bold text-white justify-center">
+                            <span class="px-3 py-2 bg-blue-600 rounded" data-en="16MW Scale" data-cn="16MW 规模">16MW Scale</span>
+                            <i class="fa-solid fa-plus text-gray-500"></i>
+                            <span class="px-3 py-2 bg-orange-600 rounded" data-en="CNPC Reliability" data-cn="中石油可靠性">CNPC Reliability</span>
+                            <i class="fa-solid fa-arrow-right text-gray-500"></i>
+                            <span class="px-3 py-2 bg-green-600 rounded" data-en="Bankability" data-cn="可融资性">Bankability</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-white/10 bg-dark py-16 text-center">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-center items-center gap-2 mb-4 text-2xl font-bold tracking-tight">
+            <span>DCDeepTech</span> <span class="text-blue-500">x</span> <span>HHE</span>
+        </div>
+        <p class="text-gray-500 text-sm mb-8 max-w-md mx-auto" data-en="Strategic Investment Proposal. Confidential & Proprietary.<br>Prepared for HHE Board & Potential Investors." data-cn="战略投资提案。机密且专有。<br>为 HHE 董事会及潜在投资者准备。">
+            Strategic Investment Proposal. Confidential & Proprietary.<br>
+            Prepared for HHE Board & Potential Investors.
+        </p>
+        <div class="flex justify-center gap-8 text-gray-600 text-xs font-mono uppercase tracking-widest">
+            <span data-en="Singapore" data-cn="新加坡">Singapore</span>
+            <span data-en="Beijing" data-cn="北京">Beijing</span>
+            <span data-en="Johor" data-cn="柔佛">Johor</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // --- Global Variables ---
+    let isEnglish = true;
+    let tcoChart, revenueChart, radarChart, marketChart;
+
+    // --- Language Logic ---
+    function toggleLang() {
+        isEnglish = !isEnglish;
+        const els = document.querySelectorAll('[data-en]');
+        els.forEach(el => {
+            el.innerHTML = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-cn');
+        });
+        document.getElementById('lang-label').textContent = isEnglish ? "EN / 中文" : "中文 / EN";
+        updateChartsLang();
+    }
+
+    // --- Chart: Market (Horizontal Bar) ---
+    function initMarketChart() {
+        const ctx = document.getElementById('marketChart');
+        if(!ctx) return; // Safety check
+        marketChart = new Chart(ctx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Brownfield Retrofit', 'Greenfield New', 'Industrial High-Tech'],
+                datasets: [{
+                    label: 'Est. Market Value (M SGD)',
+                    data: [45, 120, 28],
+                    backgroundColor: ['rgba(249, 115, 22, 0.8)', 'rgba(59, 130, 246, 0.8)', 'rgba(6, 182, 212, 0.8)'],
+                    barThickness: 20,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+                    y: { grid: { display: false }, ticks: { color: '#f1f5f9', font: { weight: 'bold' } } }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    }
+
+    // --- Chart: Revenue (Stacked) ---
+    function initRevenue() {
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2026', '2027', '2028'],
+                datasets: [
+                    { label: 'CapEx (Hardware)', data: [2.25, 9.6, 19.6], backgroundColor: '#3b82f6', stack: 'Stack 0' },
+                    { label: 'OpEx (SLA)', data: [0.25, 1.8, 5.6], backgroundColor: '#10b981', stack: 'Stack 0' },
+                    { label: 'EaaS (Leasing)', data: [0, 0.6, 2.8], backgroundColor: '#f59e0b', stack: 'Stack 0' }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#94a3b8' } },
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' }, title: { display: true, text: 'Revenue (M SGD)', color: '#64748b' } }
+                },
+                plugins: { legend: { labels: { color: '#f1f5f9' } } }
+            }
+        });
+    }
+
+    // --- Chart: Radar ---
+    function initRadar() {
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        radarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['TCO Advantage', 'Tech Lifespan', 'Service Agility', 'Initial Cost', 'Delivery Speed', 'Brand Brand'],
+                datasets: [
+                    { label: 'HHE', data: [9, 10, 9, 8, 9, 6], backgroundColor: 'rgba(59, 130, 246, 0.2)', borderColor: '#3b82f6', borderWidth: 2 },
+                    { label: 'Active Power', data: [6, 9, 5, 4, 5, 10], backgroundColor: 'rgba(245, 158, 11, 0.2)', borderColor: '#f59e0b', borderWidth: 2 },
+                    { label: 'Li-ion', data: [4, 5, 8, 9, 8, 8], backgroundColor: 'rgba(244, 63, 94, 0.2)', borderColor: '#f43f5e', borderWidth: 2 }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255,255,255,0.1)' },
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        pointLabels: { color: '#94a3b8', font: { size: 10 } },
+                        ticks: { display: false, min: 0, max: 10 }
+                    }
+                },
+                plugins: { legend: { labels: { color: '#f1f5f9' } } }
+            }
+        });
+    }
+
+    // --- Update Logic ---
+    function updateChartsLang() {
+        // Update Market Chart
+        if(marketChart) {
+            marketChart.data.labels = isEnglish 
+                ? ['Brownfield Retrofit', 'Greenfield New', 'Industrial High-Tech']
+                : ['存量改造', '增量新建', '高端工业'];
+            marketChart.data.datasets[0].label = isEnglish ? 'Est. Market Value (M SGD)' : '预估市场价值 (百万新币)';
+            marketChart.update();
+        }
+        // Update Revenue Chart
+        if(revenueChart) {
+            revenueChart.data.datasets[0].label = isEnglish ? 'CapEx (Hardware)' : 'CapEx (硬件)';
+            revenueChart.data.datasets[1].label = isEnglish ? 'OpEx (SLA)' : 'OpEx (运维)';
+            revenueChart.data.datasets[2].label = isEnglish ? 'EaaS (Leasing)' : 'EaaS (租赁)';
+            revenueChart.options.scales.y.title.text = isEnglish ? 'Revenue (M SGD)' : '收入 (百万新币)';
+            revenueChart.update();
+        }
+        // Update Radar
+        if(radarChart) {
+            radarChart.data.labels = isEnglish 
+                ? ['TCO Advantage', 'Tech Lifespan', 'Service Agility', 'Initial Cost', 'Delivery Speed', 'Brand Brand']
+                : ['TCO 优势', '技术寿命', '服务敏捷性', '初始成本', '交付速度', '品牌知名度'];
+            radarChart.data.datasets[1].label = isEnglish ? 'Active Power' : 'Active Power (美)';
+            radarChart.data.datasets[2].label = isEnglish ? 'Li-ion' : '锂电池';
+            radarChart.update();
+        }
+    }
+
+    // --- Animation & Init ---
+    function initFlywheel() {
+        const canvas = document.getElementById('flywheelCanvas');
+        const ctx = canvas.getContext('2d');
+        function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+        window.addEventListener('resize', resize); resize();
+        let rotation = 0;
+        function animate() {
+            const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2, r = Math.min(w,h)*0.3; 
+            ctx.clearRect(0, 0, w, h);
+            const gradient = ctx.createRadialGradient(cx, cy, r*0.5, cx, cy, r*1.5);
+            gradient.addColorStop(0, "rgba(59, 130, 246, 0.1)"); gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+            ctx.fillStyle = gradient; ctx.fillRect(0, 0, w, h);
+            ctx.shadowBlur = 20; ctx.shadowColor = "#3b82f6";
+            ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.strokeStyle = "rgba(59, 130, 246, 0.5)"; ctx.lineWidth = 10; ctx.stroke();
+            ctx.save(); ctx.translate(cx, cy); ctx.rotate(rotation);
+            for(let i=0; i<3; i++) {
+                ctx.rotate((Math.PI*2)/3); ctx.beginPath(); ctx.moveTo(0,0);
+                ctx.bezierCurveTo(r*0.5, -r*0.2, r*0.8, -r*0.1, r-15, 0);
+                ctx.bezierCurveTo(r*0.8, r*0.1, r*0.5, r*0.2, 0, 0);
+                ctx.fillStyle = "rgba(16, 185, 129, 0.2)"; ctx.fill();
+                ctx.strokeStyle = "#10b981"; ctx.lineWidth = 2; ctx.stroke();
+            }
+            ctx.restore();
+            ctx.shadowBlur = 30; ctx.shadowColor = "#06b6d4"; ctx.beginPath(); ctx.arc(cx, cy, r*0.15, 0, Math.PI*2); ctx.fillStyle = "#fff"; ctx.fill();
+            rotation += 0.05; requestAnimationFrame(animate);
+        }
+        animate();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initFlywheel();
+        initMarketChart();
+        initRevenue();
+        initRadar();
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if(window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    });
+</script>
+</body>
+</html>
